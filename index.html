@@ -1,175 +1,628 @@
-<html>
-  <head>
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
-    <link
-      rel="stylesheet"
-      as="style"
-      onload="this.rel='stylesheet'"
-      href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Work+Sans%3Awght%40400%3B500%3B700%3B900"
-    />
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITE MARTINI - LIBRI DI TESTO</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <title>Stitch Design</title>
-    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
 
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  </head>
-  <body>
-    <div
-      class="relative flex size-full min-h-screen flex-col bg-[#f8f9fc] group/design-root overflow-x-hidden"
-      style='--select-button-svg: url(&apos;data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724px%27 height=%2724px%27 fill=%27rgb(71,86,158)%27 viewBox=%270 0 256 256%27%3e%3cpath d=%27M181.66,170.34a8,8,0,0,1,0,11.32l-48,48a8,8,0,0,1-11.32,0l-48-48a8,8,0,0,1,11.32-11.32L128,212.69l42.34-42.35A8,8,0,0,1,181.66,170.34Zm-96-84.68L128,43.31l42.34,42.35a8,8,0,0,0,11.32-11.32l-48-48a8,8,0,0,0-11.32,0l-48,48A8,8,0,0,0,85.66,85.66Z%27%3e%3c/path%3e%3c/svg%3e&apos;); font-family: "Work Sans", "Noto Sans", sans-serif;'
-    >
-      <div class="layout-container flex h-full grow flex-col">
-        <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#e6e9f4] px-10 py-3">
-          <div class="flex items-center gap-4 text-[#0d0f1c]">
-            <div class="size-4">
-              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(#clip0_6_319)">
-                  <path
-                    d="M8.57829 8.57829C5.52816 11.6284 3.451 15.5145 2.60947 19.7452C1.76794 23.9758 2.19984 28.361 3.85056 32.3462C5.50128 36.3314 8.29667 39.7376 11.8832 42.134C15.4698 44.5305 19.6865 45.8096 24 45.8096C28.3135 45.8096 32.5302 44.5305 36.1168 42.134C39.7033 39.7375 42.4987 36.3314 44.1494 32.3462C45.8002 28.361 46.2321 23.9758 45.3905 19.7452C44.549 15.5145 42.4718 11.6284 39.4217 8.57829L24 24L8.57829 8.57829Z"
-                    fill="currentColor"
-                  ></path>
-                </g>
-                <defs>
-                  <clipPath id="clip0_6_319"><rect width="48" height="48" fill="white"></rect></clipPath>
-                </defs>
-              </svg>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: #1e3c72;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .form-container {
+            padding: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+            font-size: 0.95rem;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e6ed;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        select:focus, input:focus {
+            outline: none;
+            border-color: #2a5298;
+            box-shadow: 0 0 0 3px rgba(42, 82, 152, 0.1);
+        }
+
+        select {
+            cursor: pointer;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .btn {
+            background: #2a5298;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            background: #1e3c72;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(30, 60, 114, 0.3);
+        }
+
+        .login-form {
+            max-width: 400px;
+            margin: 50px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .backend {
+            display: none;
+        }
+
+        .download-section {
+            background: #f8f9fa;
+            padding: 30px;
+            margin: 20px 0;
+            border-radius: 10px;
+            border-left: 4px solid #2a5298;
+        }
+
+        .download-section h3 {
+            color: #1e3c72;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .download-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .btn-download {
+            background: #28a745;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .btn-download:hover {
+            background: #218838;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            margin-right: 10px;
+        }
+
+        .btn-secondary:hover {
+            background: #545b62;
+        }
+
+        .error {
+            color: #dc3545;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .success {
+            background: #d4edda;
+            color: #155724;
+            padding: 12px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border: 1px solid #c3e6cb;
+        }
+
+        .materie-list {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                margin: 10px;
+            }
+            
+            .form-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Landing Page / Form -->
+    <div id="main-page" class="container">
+        <div class="header">
+            <h1>ITE MARTINI - LIBRI DI TESTO</h1>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px;">
+                <div></div>
+                <button class="btn-secondary" onclick="showLogin()" style="background: rgba(255,255,255,0.2); border: 1px solid white; padding: 8px 16px; border-radius: 5px; color: white; cursor: pointer;">LOGIN</button>
             </div>
-            <h2 class="text-[#0d0f1c] text-lg font-bold leading-tight tracking-[-0.015em]">ITE Martini - Adozioni Libri di Testo</h2>
-          </div>
-          <button
-            class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-[#607afb] text-[#f8f9fc] text-sm font-bold leading-normal tracking-[0.015em]"
-          >
-            <span class="truncate">Login</span>
-          </button>
-        </header>
-        <div class="px-40 flex flex-1 justify-center py-5">
-          <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
-            <h2 class="text-[#0d0f1c] tracking-light text-[28px] font-bold leading-tight px-4 text-center pb-3 pt-5">ITE Martini - Adozioni Libri di Testo</h2>
-            <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
-              <label class="flex flex-col min-w-40 flex-1">
-                <p class="text-[#0d0f1c] text-base font-medium leading-normal pb-2">Classe</p>
-                <select
-                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#0d0f1c] focus:outline-0 focus:ring-0 border border-[#ced2e9] bg-[#f8f9fc] focus:border-[#ced2e9] h-14 bg-[image:--select-button-svg] placeholder:text-[#47569e] p-[15px] text-base font-normal leading-normal"
-                >
-                  <option value="one">Seleziona la classe</option>
-                  <option value="two">two</option>
-                  <option value="three">three</option>
-                </select>
-              </label>
-            </div>
-            <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
-              <label class="flex flex-col min-w-40 flex-1">
-                <p class="text-[#0d0f1c] text-base font-medium leading-normal pb-2">Corso</p>
-                <select
-                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#0d0f1c] focus:outline-0 focus:ring-0 border border-[#ced2e9] bg-[#f8f9fc] focus:border-[#ced2e9] h-14 bg-[image:--select-button-svg] placeholder:text-[#47569e] p-[15px] text-base font-normal leading-normal"
-                >
-                  <option value="one">Seleziona il corso</option>
-                  <option value="two">two</option>
-                  <option value="three">three</option>
-                </select>
-              </label>
-            </div>
-            <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
-              <label class="flex flex-col min-w-40 flex-1">
-                <p class="text-[#0d0f1c] text-base font-medium leading-normal pb-2">Materia</p>
-                <select
-                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#0d0f1c] focus:outline-0 focus:ring-0 border border-[#ced2e9] bg-[#f8f9fc] focus:border-[#ced2e9] h-14 bg-[image:--select-button-svg] placeholder:text-[#47569e] p-[15px] text-base font-normal leading-normal"
-                >
-                  <option value="one">Seleziona la materia</option>
-                  <option value="two">two</option>
-                  <option value="three">three</option>
-                </select>
-              </label>
-            </div>
-            <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
-              <label class="flex flex-col min-w-40 flex-1">
-                <p class="text-[#0d0f1c] text-base font-medium leading-normal pb-2">ISBN</p>
-                <input
-                  placeholder="Inserisci ISBN"
-                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#0d0f1c] focus:outline-0 focus:ring-0 border border-[#ced2e9] bg-[#f8f9fc] focus:border-[#ced2e9] h-14 placeholder:text-[#47569e] p-[15px] text-base font-normal leading-normal"
-                  value=""
-                />
-              </label>
-            </div>
-            <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
-              <label class="flex flex-col min-w-40 flex-1">
-                <p class="text-[#0d0f1c] text-base font-medium leading-normal pb-2">Autore</p>
-                <input
-                  placeholder="Inserisci autore"
-                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#0d0f1c] focus:outline-0 focus:ring-0 border border-[#ced2e9] bg-[#f8f9fc] focus:border-[#ced2e9] h-14 placeholder:text-[#47569e] p-[15px] text-base font-normal leading-normal"
-                  value=""
-                />
-              </label>
-            </div>
-            <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
-              <label class="flex flex-col min-w-40 flex-1">
-                <p class="text-[#0d0f1c] text-base font-medium leading-normal pb-2">Titolo</p>
-                <input
-                  placeholder="Inserisci titolo"
-                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#0d0f1c] focus:outline-0 focus:ring-0 border border-[#ced2e9] bg-[#f8f9fc] focus:border-[#ced2e9] h-14 placeholder:text-[#47569e] p-[15px] text-base font-normal leading-normal"
-                  value=""
-                />
-              </label>
-            </div>
-            <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
-              <label class="flex flex-col min-w-40 flex-1">
-                <p class="text-[#0d0f1c] text-base font-medium leading-normal pb-2">Volume</p>
-                <input
-                  placeholder="Inserisci volume"
-                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#0d0f1c] focus:outline-0 focus:ring-0 border border-[#ced2e9] bg-[#f8f9fc] focus:border-[#ced2e9] h-14 placeholder:text-[#47569e] p-[15px] text-base font-normal leading-normal"
-                  value=""
-                />
-              </label>
-            </div>
-            <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
-              <label class="flex flex-col min-w-40 flex-1">
-                <p class="text-[#0d0f1c] text-base font-medium leading-normal pb-2">Editore</p>
-                <input
-                  placeholder="Inserisci editore"
-                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#0d0f1c] focus:outline-0 focus:ring-0 border border-[#ced2e9] bg-[#f8f9fc] focus:border-[#ced2e9] h-14 placeholder:text-[#47569e] p-[15px] text-base font-normal leading-normal"
-                  value=""
-                />
-              </label>
-            </div>
-            <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
-              <label class="flex flex-col min-w-40 flex-1">
-                <p class="text-[#0d0f1c] text-base font-medium leading-normal pb-2">Prezzo</p>
-                <input
-                  placeholder="Inserisci prezzo"
-                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#0d0f1c] focus:outline-0 focus:ring-0 border border-[#ced2e9] bg-[#f8f9fc] focus:border-[#ced2e9] h-14 placeholder:text-[#47569e] p-[15px] text-base font-normal leading-normal"
-                  value=""
-                />
-              </label>
-            </div>
-            <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
-              <label class="flex flex-col min-w-40 flex-1">
-                <p class="text-[#0d0f1c] text-base font-medium leading-normal pb-2">Nome docente</p>
-                <input
-                  placeholder="Inserisci nome docente"
-                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#0d0f1c] focus:outline-0 focus:ring-0 border border-[#ced2e9] bg-[#f8f9fc] focus:border-[#ced2e9] h-14 placeholder:text-[#47569e] p-[15px] text-base font-normal leading-normal"
-                  value=""
-                />
-              </label>
-            </div>
-            <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
-              <label class="flex flex-col min-w-40 flex-1">
-                <p class="text-[#0d0f1c] text-base font-medium leading-normal pb-2">Note</p>
-                <textarea
-                  placeholder="Inserisci note"
-                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#0d0f1c] focus:outline-0 focus:ring-0 border border-[#ced2e9] bg-[#f8f9fc] focus:border-[#ced2e9] min-h-36 placeholder:text-[#47569e] p-[15px] text-base font-normal leading-normal"
-                ></textarea>
-              </label>
-            </div>
-            <div class="flex px-4 py-3 justify-center">
-              <button
-                class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-[#607afb] text-[#f8f9fc] text-sm font-bold leading-normal tracking-[0.015em]"
-              >
-                <span class="truncate">Invia</span>
-              </button>
-            </div>
-          </div>
         </div>
-      </div>
+        
+        <div class="form-container">
+            <form id="bookForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="classe">CLASSE</label>
+                        <select id="classe" required>
+                            <option value="">Seleziona classe</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="corso">CORSO</label>
+                        <select id="corso" required>
+                            <option value="">Seleziona corso</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                            <option value="E">E</option>
+                            <option value="F">F</option>
+                            <option value="G">G</option>
+                            <option value="H">H</option>
+                            <option value="I">I</option>
+                            <option value="L">L</option>
+                            <option value="M">M</option>
+                            <option value="N">N</option>
+                            <option value="O">O</option>
+                            <option value="P">P</option>
+                            <option value="Q">Q</option>
+                            <option value="R">R</option>
+                            <option value="S">S</option>
+                            <option value="T">T</option>
+                            <option value="U">U</option>
+                            <option value="V">V</option>
+                            <option value="Z">Z</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="materia">MATERIA</label>
+                    <select id="materia" required>
+                        <option value="">Seleziona materia</option>
+                        <option value="2 LINGUA COMUNITARIA FRANCESE">2 LINGUA COMUNITARIA FRANCESE</option>
+                        <option value="2 LINGUA COMUNITARIA SPAGNOLO">2 LINGUA COMUNITARIA SPAGNOLO</option>
+                        <option value="3 LINGUA COMUNITARIA TEDESCO">3 LINGUA COMUNITARIA TEDESCO</option>
+                        <option value="3 LINGUA COMUNITARIA FRANCESE">3 LINGUA COMUNITARIA FRANCESE</option>
+                        <option value="ARTE E TERRITORIO">ARTE E TERRITORIO</option>
+                        <option value="DIRITTO">DIRITTO</option>
+                        <option value="DIRITTO E LEGISLAZIONE TURISTICA">DIRITTO E LEGISLAZIONE TURISTICA</option>
+                        <option value="DISCIPLINE TURISTICHE E AZIENDALI">DISCIPLINE TURISTICHE E AZIENDALI</option>
+                        <option value="DIRITTO ED ECONOMIA">DIRITTO ED ECONOMIA</option>
+                        <option value="ECONOMIA AZIENDALE">ECONOMIA AZIENDALE</option>
+                        <option value="ECONOMIA POLITICA">ECONOMIA POLITICA</option>
+                        <option value="ECONOMIA AZIENDALE E GEOPOLITICA">ECONOMIA AZIENDALE E GEOPOLITICA</option>
+                        <option value="GEOGRAFIA">GEOGRAFIA</option>
+                        <option value="GEOGRAFIA TURISTICA">GEOGRAFIA TURISTICA</option>
+                        <option value="INFORMATICA">INFORMATICA</option>
+                        <option value="LINGUA E LETTERATURA ITALIANA">LINGUA E LETTERATURA ITALIANA</option>
+                        <option value="LINGUA INGLESE">LINGUA INGLESE</option>
+                        <option value="LINGUA INGLESE, Lettore Madrelingua Inglese">LINGUA INGLESE, Lettore Madrelingua Inglese</option>
+                        <option value="MATEMATICA">MATEMATICA</option>
+                        <option value="RELAZIONI INTERNAZIONALI">RELAZIONI INTERNAZIONALI</option>
+                        <option value="RELIGIONE CATTOLICA O ATTIVITA' ALTERNATIVA">RELIGIONE CATTOLICA O ATTIVITA' ALTERNATIVA</option>
+                        <option value="SCIENZE INTEGRATE (FISICA)">SCIENZE INTEGRATE (FISICA)</option>
+                        <option value="SCIENZE INTEGRATE (CHIMICA)">SCIENZE INTEGRATE (CHIMICA)</option>
+                        <option value="SCIENZE INTEGRATE(sc.della terra e biologia)">SCIENZE INTEGRATE(sc.della terra e biologia)</option>
+                        <option value="SCIENZE MOTORIE E SPORTIVE">SCIENZE MOTORIE E SPORTIVE</option>
+                        <option value="STORIA">STORIA</option>
+                        <option value="TECNOLOGIA DELLE COMUNICAZIONI">TECNOLOGIA DELLE COMUNICAZIONI</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="isbn">CODICE ISBN</label>
+                    <input type="text" id="isbn" placeholder="Digita il codice ISBN (13 numeri senza spazi)" required>
+                    <div class="error" id="isbn-error"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="autori">AUTORE/I</label>
+                    <input type="text" id="autori" placeholder="Digita autore/i" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="titolo">TITOLO DELL'OPERA</label>
+                    <input type="text" id="titolo" placeholder="Digita titolo dell'opera" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="volume">VOLUME</label>
+                        <input type="text" id="volume" placeholder="Digita volume" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="editore">EDITORE</label>
+                        <input type="text" id="editore" placeholder="Digita editore" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="prezzo">PREZZO</label>
+                        <input type="text" id="prezzo" placeholder="es: 25,50" required>
+                        <div class="error" id="prezzo-error"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="docente">NOME E COGNOME DOCENTE</label>
+                        <input type="text" id="docente" placeholder="Digita nome e cognome docente" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="note">NOTE</label>
+                    <select id="note" required>
+                        <option value="">Seleziona</option>
+                        <option value="U">U = già in uso</option>
+                        <option value="N.A.">N.A. = Nuova Adozione</option>
+                        <option value="PR">PR = prosecuzione</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn">INVIA</button>
+                
+                <div id="error-message" style="display: none;" class="error" style="background: #f8d7da; color: #721c24; padding: 12px; border-radius: 5px; margin: 15px 0; border: 1px solid #f5c6cb; text-align: center; font-weight: 600;">
+                    Compilare tutti i campi!
+                </div>
+                
+                <div id="success-message" style="display: none;" class="success">
+                    Dati salvati con successo!
+                </div>
+            </form>
+        </div>
     </div>
-  </body>
+
+    <!-- Login Form -->
+    <div id="login-page" style="display: none;">
+        <div class="login-form">
+            <h2 style="text-align: center; color: #1e3c72; margin-bottom: 30px;">Accesso Backend</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit" class="btn">ACCEDI</button>
+                <div class="error" id="login-error"></div>
+                <button type="button" class="btn btn-secondary" onclick="showMainPage()" style="margin-top: 10px;">Torna al Form</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Backend Page -->
+    <div id="backend-page" class="container backend">
+        <div class="header">
+            <h1>BACKEND - DOWNLOAD LIBRI DI TESTO</h1>
+            <button class="btn-secondary" onclick="logout()" style="background: rgba(255,255,255,0.2); border: 1px solid white; padding: 8px 16px; border-radius: 5px; color: white; cursor: pointer;">LOGOUT</button>
+        </div>
+        
+        <div class="form-container">
+            <div id="download-sections">
+                <!-- I contenuti saranno generati dinamicamente -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dati memorizzati (simulazione database)
+        let booksData = JSON.parse(localStorage.getItem('booksData')) || {};
+        
+        // Funzioni di navigazione
+        function showLogin() {
+            document.getElementById('main-page').style.display = 'none';
+            document.getElementById('login-page').style.display = 'block';
+            document.getElementById('backend-page').style.display = 'none';
+        }
+        
+        function showMainPage() {
+            document.getElementById('main-page').style.display = 'block';
+            document.getElementById('login-page').style.display = 'none';
+            document.getElementById('backend-page').style.display = 'none';
+        }
+        
+        function showBackend() {
+            document.getElementById('main-page').style.display = 'none';
+            document.getElementById('login-page').style.display = 'none';
+            document.getElementById('backend-page').style.display = 'block';
+            generateDownloadSections();
+        }
+        
+        function logout() {
+            showMainPage();
+        }
+
+        // Validazione ISBN
+        function validateISBN(isbn) {
+            const cleanISBN = isbn.replace(/\D/g, '');
+            return cleanISBN.length === 13;
+        }
+
+        // Validazione Prezzo
+        function validatePrice(price) {
+            const priceRegex = /^\d+,\d{2}$/;
+            return priceRegex.test(price.trim());
+        }
+
+        // Form submission
+        document.getElementById('bookForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Reset errors and messages
+            document.getElementById('isbn-error').textContent = '';
+            document.getElementById('prezzo-error').textContent = '';
+            document.getElementById('error-message').style.display = 'none';
+            document.getElementById('success-message').style.display = 'none';
+            
+            // Get form data
+            const classe = document.getElementById('classe').value.trim();
+            const corso = document.getElementById('corso').value.trim();
+            const materia = document.getElementById('materia').value.trim();
+            const isbn = document.getElementById('isbn').value.trim();
+            const autori = document.getElementById('autori').value.trim();
+            const titolo = document.getElementById('titolo').value.trim();
+            const volume = document.getElementById('volume').value.trim();
+            const editore = document.getElementById('editore').value.trim();
+            const prezzo = document.getElementById('prezzo').value.trim();
+            const docente = document.getElementById('docente').value.trim();
+            const note = document.getElementById('note').value.trim();
+            
+            // Check if all fields are filled
+            if (!classe || !corso || !materia || !isbn || !autori || !titolo || !volume || !editore || !prezzo || !docente || !note) {
+                document.getElementById('error-message').style.display = 'block';
+                // Scroll to error message
+                document.getElementById('error-message').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+            
+            // Validations
+            let hasErrors = false;
+            
+            if (!validateISBN(isbn)) {
+                document.getElementById('isbn-error').textContent = 'Inserire un codice ISBN valido (13 numeri senza spazi)';
+                hasErrors = true;
+            }
+            
+            if (!validatePrice(prezzo)) {
+                document.getElementById('prezzo-error').textContent = 'Formato prezzo non valido. Usa il formato: xx,xx (es: 25,50)';
+                hasErrors = true;
+            }
+            
+            if (hasErrors) return;
+            
+            // Save data
+            const classeCorso = classe + corso;
+            
+            if (!booksData[classeCorso]) {
+                booksData[classeCorso] = [];
+            }
+            
+            booksData[classeCorso].push({
+                classe,
+                corso,
+                materia,
+                isbn,
+                autori,
+                titolo,
+                volume,
+                editore,
+                prezzo,
+                docente,
+                note,
+                timestamp: new Date().toISOString()
+            });
+            
+            // Save to localStorage
+            localStorage.setItem('booksData', JSON.stringify(booksData));
+            
+            // Show success message
+            document.getElementById('success-message').style.display = 'block';
+            document.getElementById('success-message').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            setTimeout(() => {
+                document.getElementById('success-message').style.display = 'none';
+            }, 3000);
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Login
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            if (username === 'admin' && password === 'admin') {
+                showBackend();
+                document.getElementById('login-error').textContent = '';
+                // Reset form
+                document.getElementById('username').value = '';
+                document.getElementById('password').value = '';
+            } else {
+                document.getElementById('login-error').textContent = 'Credenziali non valide';
+            }
+        });
+
+        // Generate download sections
+        function generateDownloadSections() {
+            const container = document.getElementById('download-sections');
+            container.innerHTML = '';
+            
+            if (Object.keys(booksData).length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #666; font-size: 1.1rem;">Nessun dato disponibile per il download.</p>';
+                return;
+            }
+            
+            Object.keys(booksData).sort().forEach(classeCorso => {
+                const section = document.createElement('div');
+                section.className = 'download-section';
+                section.innerHTML = `
+                    <h3>CLASSE ${classeCorso} (${booksData[classeCorso].length} libri)</h3>
+                    <div class="download-buttons">
+                        <button class="btn-download" onclick="downloadCSV('${classeCorso}')">Download .csv</button>
+                        <button class="btn-download" onclick="downloadXLS('${classeCorso}')">Download .xls</button>
+                    </div>
+                `;
+                container.appendChild(section);
+            });
+        }
+
+        // Download functions
+        function downloadCSV(classeCorso) {
+            const data = booksData[classeCorso];
+            if (!data || data.length === 0) return;
+            
+            const headers = ['Classe', 'Corso', 'Materia', 'ISBN', 'Autori', 'Titolo', 'Volume', 'Editore', 'Prezzo', 'Docente', 'Note'];
+            let csvContent = headers.join(',') + '\n';
+            
+            data.forEach(book => {
+                const row = [
+                    book.classe,
+                    book.corso,
+                    `"${book.materia}"`,
+                    book.isbn,
+                    `"${book.autori}"`,
+                    `"${book.titolo}"`,
+                    `"${book.volume}"`,
+                    `"${book.editore}"`,
+                    `"${book.prezzo}"`,
+                    `"${book.docente}"`,
+                    book.note
+                ];
+                csvContent += row.join(',') + '\n';
+            });
+            
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+            link.setAttribute('href', url);
+            link.setAttribute('download', `libri_${classeCorso}.csv`);
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+        
+        function downloadXLS(classeCorso) {
+            // Per una versione semplificata, generiamo un file TSV che Excel può aprire
+            const data = booksData[classeCorso];
+            if (!data || data.length === 0) return;
+            
+            const headers = ['Classe', 'Corso', 'Materia', 'ISBN', 'Autori', 'Titolo', 'Volume', 'Editore', 'Prezzo', 'Docente', 'Note'];
+            let tsvContent = headers.join('\t') + '\n';
+            
+            data.forEach(book => {
+                const row = [
+                    book.classe,
+                    book.corso,
+                    book.materia,
+                    book.isbn,
+                    book.autori,
+                    book.titolo,
+                    book.volume,
+                    book.editore,
+                    book.prezzo,
+                    book.docente,
+                    book.note
+                ];
+                tsvContent += row.join('\t') + '\n';
+            });
+            
+            const blob = new Blob([tsvContent], { type: 'application/vnd.ms-excel' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+            link.setAttribute('href', url);
+            link.setAttribute('download', `libri_${classeCorso}.xls`);
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            showMainPage();
+        });
+    </script>
+</body>
 </html>
